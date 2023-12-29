@@ -1,53 +1,48 @@
 package com.suitmedia.question1.ui.second
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.commit
+import androidx.activity.result.contract.ActivityResultContracts
 import com.suitmedia.question1.R
+import com.suitmedia.question1.databinding.ActivitySecondBinding
+import com.suitmedia.question1.ui.third.ThirdActivity
 import com.suitmedia.question1.utils.NAME
+import com.suitmedia.question1.utils.USERNAME
 
 class SecondActivity : AppCompatActivity() {
-    private lateinit var fragmentManager: FragmentManager
+    private lateinit var binding: ActivitySecondBinding
+    private var username: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_back)
+            title = getString(R.string.second_screen)
         }
-        setContentView(R.layout.activity_second)
+        binding = ActivitySecondBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val name = intent.getStringExtra(NAME)
 
-        fragmentManager = supportFragmentManager
-        val fragment = fragmentManager.findFragmentByTag(SecondScreenFragment::class.java.simpleName)
+        name?.let { binding.tvName.text = it }
 
-        if (fragment == null) {
-            name?.let {
-                val secondFragment = SecondScreenFragment()
-                secondFragment.arguments = Bundle().apply {
-                    putString(NAME, name)
-                }
-                fragmentManager.commit {
-                    add(R.id.frame_container, secondFragment, SecondScreenFragment::class.java.simpleName)
-                }
-            }
+
+        binding.btnChoose.setOnClickListener {
+            val intent = Intent(this, ThirdActivity::class.java)
+            chooseUser.launch(intent)
         }
+    }
+    private val chooseUser = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ){
+        username = it.data?.getStringExtra(USERNAME)
+        username?.let { binding.tvUsername.text = it }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> {
-                val fragment = fragmentManager.findFragmentById(R.id.frame_container)
-                if (fragment is SecondScreenFragment) {
-                    finish()
-                } else {
-                    fragmentManager.popBackStack()
-                }
-                return true
-            }
-        }
+        finish()
         return super.onOptionsItemSelected(item)
     }
 }

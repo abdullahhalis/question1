@@ -4,7 +4,7 @@
     android:id="@+id/swipe_refresh_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.third.ThirdScreenFragment">
+    tools:context=".ui.third.ThirdActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_users"

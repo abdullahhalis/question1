@@ -1,7 +1,5 @@
 package com.suitmedia.question1.ui.third
 
-import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
@@ -11,9 +9,6 @@ import com.bumptech.glide.Glide
 import com.suitmedia.question1.R
 import com.suitmedia.question1.data.response.DataItem
 import com.suitmedia.question1.databinding.ItemUserBinding
-import com.suitmedia.question1.ui.second.SecondScreenFragment
-import com.suitmedia.question1.utils.NAME
-import com.suitmedia.question1.utils.USERNAME
 
 class UserListAdapter(private val onclick: (username: String) -> Unit): PagingDataAdapter<DataItem, UserListAdapter.MyViewHolder>(DIFF_CALLBACK) {
 

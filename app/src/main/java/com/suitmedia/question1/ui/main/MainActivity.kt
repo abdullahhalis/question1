@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
                 val text = binding.edPalindrome.text.toString()
                 val isPalindrome = checkPalindrome(text)
                 if (isPalindrome) {
-                    showDialog("isPalindrome")
+                    showDialog(getString(R.string.ispalindrome))
                 } else {
-                    showDialog("not palindrome")
+                    showDialog(getString(R.string.not_palindrome))
                 }
             }
         }

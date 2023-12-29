@@ -3,7 +3,6 @@ package com.suitmedia.question1.utils
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.suitmedia.question1.data.Repository
 import com.suitmedia.question1.ui.third.ThirdScreenViewModel
 import java.lang.IllegalArgumentException
 
