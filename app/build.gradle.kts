@@ -13,6 +13,7 @@ android {
         targetSdk = 31
         versionCode = 1
         versionName = "1.0"
+        multiDexEnabled = true
 
         buildConfigField("String", "BASE_URL", "\"https://reqres.in/api/\"")
 
@@ -47,6 +48,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.multidex:multidex:2.0.1")
 
     //retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
